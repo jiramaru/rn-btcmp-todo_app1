@@ -1,9 +1,13 @@
+import { ThemeProvider } from "@/hooks/useTheme";
+import { ThemeContext } from "@react-navigation/native";
 import { Stack } from "expo-router";
 
 export default function RootLayout() {
-  return <Stack screenOptions={{
-    headerShown: false
-  }}>
-    <Stack.Screen name="(tabs)" options={{ title: "Home" }} />
-  </Stack>
+  return <ThemeProvider>
+    <Stack screenOptions={{
+      headerShown: false
+    }}>
+      <Stack.Screen name="(tabs)" />
+    </Stack>
+  </ThemeProvider>
 }
