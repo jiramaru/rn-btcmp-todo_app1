@@ -5,11 +5,9 @@ import { Text, View, StyleSheet } from "react-native";
 export default function Index() {
   return (
     <View
-      style= {styles.container}>
-      <Text style= {styles.one}>Hello, Deo</Text>      
-      <Text style= {styles.two}>What's Gooood!?</Text>
-      <Link href="/about">Visite about page</Link>
-      
+      style={styles.container}>
+      <Text style={styles.one}>Hello, Deo</Text>
+
     </View>
   );
 }
