@@ -1,12 +1,13 @@
 import { api } from "@/convex/_generated/api";
 import { addTodo, clearAllTodos } from "@/convex/todos";
-import useTheme from "@/hooks/useTheme";
+import useTheme, { ColorScheme } from "@/hooks/useTheme";
 import { useMutation, useQuery } from "convex/react";
-import { Link } from "expo-router";
 import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 
 export default function Index() {
-  const { toggleDarkMode } = useTheme();
+  const { toggleDarkMode, colors } = useTheme();
+
+  const styles = createStyles(colors);
 
   return (
     <View style={styles.container}>
@@ -18,24 +19,27 @@ export default function Index() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#fefefe",
-  },
-  one: {
-    fontSize: 22,
-  },
-  two: {
-    fontSize: 18,
-    backgroundColor: "#eee",
-    color: "#123",
-    padding: 5,
-    borderRadius: 5,
-    elevation: 5,
-    margin: 5,
-  },
-});
+const createStyles = (colors: ColorScheme) => {
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+      backgroundColor: colors.bg,
+    },
+    one: {
+      fontSize: 22,
+    },
+    two: {
+      fontSize: 18,
+      backgroundColor: "#eee",
+      color: "#123",
+      padding: 5,
+      borderRadius: 5,
+      elevation: 5,
+      margin: 5,
+    },
+  });
+  return styles;
+};
