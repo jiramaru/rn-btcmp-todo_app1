@@ -40,7 +40,7 @@ export default function Index() {
   if (isLoading) return <LoadingSpinner />;
 
   const handleToggleTodo = async (id: Id<"todos">) => {
-    if (editingId) {
+    if (!editingId) {
       try {
         await toggleTodo({ id });
         setEditingId(null);
