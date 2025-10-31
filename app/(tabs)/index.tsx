@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   StatusBar,
   FlatList,
+  Alert,
 } from "react-native";
 import { createHomeStyles } from "../../assets/styles/home.style";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -17,17 +18,20 @@ import TodoInput from "@/components/home/TodoInput";
 import LoadingSpinner from "@/components/home/LoadingSpinner";
 import { Doc, Id } from "@/convex/_generated/dataModel";
 import { Ionicons } from "@expo/vector-icons";
+import EmptyState from "@/components/home/EmptyState";
 
 type Todo = Doc<"todos">;
 
 export default function Index() {
-  const { toggleDarkMode, colors } = useTheme();
+  const { colors } = useTheme();
 
   const homeStyle = createHomeStyles(colors);
 
   const todos = useQuery(api.todos.getTodos);
 
   const toggleTodo = useMutation(api.todos.toggleTodo);
+
+  const deleteTodo = useMutation(api.todos.deleteTodo);
 
   const isLoading = todos === undefined;
 
@@ -39,6 +43,17 @@ export default function Index() {
     } catch (e) {
       console.log(e);
     }
+  };
+
+  const handleDeleteTodo = async (id: Id<"todos">) => {
+    Alert.alert("Delete Todo", "Are you sure you want to delete this todo?", [
+      { text: "Cancel", style: "cancel" },
+      {
+        text: "Delete",
+        style: "destructive",
+        onPress: () => deleteTodo({ id }),
+      },
+    ]);
   };
 
   const renderTodoItem = ({ item }: { item: Todo }) => {
@@ -75,7 +90,6 @@ export default function Index() {
           </TouchableOpacity>
 
           <View style={homeStyle.todoTextContainer}>
-            {" "}
             <Text
               style={[
                 homeStyle.todoText,
@@ -97,7 +111,10 @@ export default function Index() {
                   <Ionicons name="pencil" size={14} color="#fff" />
                 </LinearGradient>
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => { }} activeOpacity={0.8}>
+              <TouchableOpacity
+                onPress={() => handleDeleteTodo(item._id)}
+                activeOpacity={0.8}
+              >
                 <LinearGradient
                   colors={colors.gradients.danger}
                   style={homeStyle.actionButton}
@@ -127,6 +144,8 @@ export default function Index() {
           keyExtractor={(item) => item._id}
           style={homeStyle.todoList}
           contentContainerStyle={homeStyle.todoListContent}
+          ListEmptyComponent={<EmptyState />}
+          showsVerticalScrollIndicator={false}
         />
       </SafeAreaView>
     </LinearGradient>
