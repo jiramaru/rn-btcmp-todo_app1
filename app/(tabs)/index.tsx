@@ -7,6 +7,7 @@ import { createHomeStyles } from "../../assets/styles/home.style";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 import Header from "@/components/home/Header";
+import TodoInput from "@/components/home/TodoInput";
 
 export default function Index() {
   const { toggleDarkMode, colors } = useTheme();
@@ -14,7 +15,6 @@ export default function Index() {
   const homeStyle = createHomeStyles(colors);
 
   const todos = useQuery(api.todos.getTodos);
-  const addTodo = useMutation(api.todos.addTodo);
   console.log(todos);
 
   return (
@@ -25,6 +25,7 @@ export default function Index() {
       <StatusBar barStyle={colors.statusBarStyle} />
       <SafeAreaView style={homeStyle.safeArea}>
         <Header />
+        <TodoInput />
         <TouchableOpacity onPress={toggleDarkMode}>
           <Text>Toggle Mode</Text>
         </TouchableOpacity>
