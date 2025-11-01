@@ -40,6 +40,7 @@ const DangerZone = () => {
       ],
     );
   };
+
   return (
     <LinearGradient
       colors={colors.gradients.surface}
