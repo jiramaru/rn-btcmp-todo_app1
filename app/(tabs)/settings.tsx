@@ -7,6 +7,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { createSettingsStyles } from "@/assets/styles/settings.style";
 import ProgressStats from "@/components/settings/ProgressStats";
 import Preferences from "@/components/settings/Preferences";
+import DangerZone from "@/components/settings/DangerZone";
 
 const SettingsScreen = () => {
   const { colors } = useTheme();
@@ -27,6 +28,7 @@ const SettingsScreen = () => {
         >
           <ProgressStats />
           <Preferences />
+          <DangerZone />
         </ScrollView>
       </SafeAreaView>
     </LinearGradient>
