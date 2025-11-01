@@ -5,7 +5,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { useMutation } from "convex/react";
 import { LinearGradient } from "expo-linear-gradient";
 import { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, Alert } from "react-native";
+import { View, TextInput, TouchableOpacity, Alert } from "react-native";
 
 const TodoInput = () => {
   const { colors } = useTheme();

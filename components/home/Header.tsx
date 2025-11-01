@@ -6,11 +6,6 @@ import { useQuery } from "convex/react";
 import { LinearGradient } from "expo-linear-gradient";
 import { View, Text } from "react-native";
 
-interface todo {
-  text: string;
-  isCompleted: boolean;
-}
-
 const Header = () => {
   const { colors } = useTheme();
   const homeStyle = createHomeStyles(colors);
@@ -33,7 +28,7 @@ const Header = () => {
         </LinearGradient>
 
         <View style={homeStyle.titleTextContainer}>
-          <Text style={homeStyle.title}>Today's Tasks 👀</Text>
+          <Text style={homeStyle.title}>Today&apos;s Tasks 👀</Text>
           <Text style={homeStyle.subtitle}>
             {completedCout} of {totalCount} completed
           </Text>
